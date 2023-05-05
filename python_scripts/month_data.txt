@@ -1,0 +1,44 @@
+1: 
+num_conns: 34321204 
+num_certs: 429364 
+intercept_conns: 112366 
+num_intercept_certs: 9149 
+non_intercept_conns: 33754165 
+num_non_intercept_certs: 393791 
+non_intercept_weak: 45898 
+non_intercept_recommended: 22600 
+non_intercept_secure: 345426 
+non_intercept_insecure: 1129 
+3: 
+num_conns: 841028279 
+num_certs: 8644519 
+intercept_conns: 6350044 
+num_intercept_certs: 107728 
+non_intercept_conns: 813663253 
+num_non_intercept_certs: 7539982 
+non_intercept_weak: 648721 
+non_intercept_recommended: 487276 
+non_intercept_secure: 6671715 
+non_intercept_insecure: 9265 
+2: 
+num_conns: 610930383 
+num_certs: 6199693 
+intercept_conns: 3596749 
+num_intercept_certs: 73529 
+non_intercept_conns: 590991904 
+num_non_intercept_certs: 5325167 
+non_intercept_weak: 465906 
+non_intercept_recommended: 354830 
+non_intercept_secure: 4691236 
+non_intercept_insecure: 7448 
+4: 
+num_conns: 491642921 
+num_certs: 4105549 
+intercept_conns: 4066048 
+num_intercept_certs: 68582 
+non_intercept_conns: 480640815 
+num_non_intercept_certs: 3657888 
+non_intercept_weak: 311029 
+non_intercept_recommended: 248652 
+non_intercept_secure: 3213416 
+non_intercept_insecure: 4262 

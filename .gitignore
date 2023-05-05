@@ -1,0 +1,7 @@
+.vscode
+.ipynb_checkpoints
+intercept_dfs
+
+*.crc
+__pycache__
+*.parquet
