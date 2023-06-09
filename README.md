@@ -50,7 +50,7 @@
 # Finding Interception Data Example
 1. Convert SSL Logs using `month_parquets.py` - `python3 month_parquets.py 12 2022 ssl`
 2. Convert corresponding X509 Logs using `companion_month_parquets.py` - `python3 companion_month_parquets.py 12 2022 x509 ssl`
-3. Parse the SSL logs and X509 logs in parquet files using `python3 month_intercept_parser 2022-12-01 2022-12-31`
+3. Parse the SSL logs and X509 logs in parquet files using `python3 month_intercept_parser.py 2022-12-01 2022-12-31`
 4. Create a new notebook in `notebooks > analysis_notebooks`. Import `process_parquet_dir` from `analysis_helpers.intercept_helpers`. Set a new dataframe variable to `df = process_parquet_dir(<data path>)`
 
 
