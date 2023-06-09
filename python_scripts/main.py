@@ -51,7 +51,7 @@ def main():
     api_key = api_key_file.readline()
     api_key_file.close()
     
-    for parquet_name in parquets[(2*len(parquets)//3):]:
+    for parquet_name in parquets:
         try:
             process_parquet(SQLContext, data_path + parquet_name, result_path, data_date, api_key)
         except Exception as e:

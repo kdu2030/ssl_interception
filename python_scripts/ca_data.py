@@ -37,7 +37,7 @@ def main():
     result_path = f"/mnt/chaseproject/uva/kd5eyn/ca_data/{result_dir_name}/"
     parquets = os.listdir(data_path)
     
-    for parquet_name in parquets[(2*len(parquets)//3):]:
+    for parquet_name in parquets:
         try:
             process_parquet(SQLContext, sys.argv[2], data_path + parquet_name, result_path)
         except Exception as e:

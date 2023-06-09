@@ -3,7 +3,6 @@ from tldextract import extract
 from datetime import datetime
 from typing import Dict, List
 
-#TODO Make Find Latest Function
 
 def find_closest_certs(cert_dict: Dict, data_date: datetime) -> List:
     closest_certs = []
@@ -56,13 +55,6 @@ def parse_crt(crt_parser: Crtsh, domain: str):
     closest_certs = find_closest_certs(cert_dict, data_date)
     print(cert_dict)
     print(closest_certs)
-        #print(certificate.keys())
-        #if ca not in cas:
-        #cas.append(ca)
-    
-    # if len(cas) == 1:
-    #     return cas[0]
-    # return str(cas)
 
 def main():
     crt_parser = Crtsh()

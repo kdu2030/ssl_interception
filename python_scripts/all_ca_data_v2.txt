@@ -218,8 +218,8 @@ TLS_RSA_WITH_RC4_128_SHA: 1
 TLS_RSA_WITH_AES_128_CBC_SHA256: 24 
 TLS_RSA_WITH_AES_256_CBC_SHA256: 24 
 TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256: 2 
-Final output: 
 
+Final output: 
 intercept_conns: 6104098 
 num_intercept_certs: 116340 
 non_intercept_conns: 829530157 
