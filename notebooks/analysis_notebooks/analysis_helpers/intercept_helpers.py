@@ -8,6 +8,7 @@ import requests
 from tldextract import extract
 from pycrtsh import Crtsh
 from traceback import print_exc
+import re
 
 
 def combine_dfs(data_path: str) -> pd.DataFrame:
@@ -27,12 +28,15 @@ def combine_dfs(data_path: str) -> pd.DataFrame:
 
 def does_ca_match(zeek_ca: str, historical_cas: str) -> bool:
     # Converts historical_cas string into a set
-    if historical_cas.find("{") == -1:
+    historical_cas = re.sub(r"(\ \(.*?\))", "", historical_cas)
+    if historical_cas.find("[") == -1:
         return zeek_ca == historical_cas
-    hist_cas_set = eval(historical_cas)
-    if zeek_ca in hist_cas_set:
+    hist_cas_list = eval(historical_cas)
+    if zeek_ca in hist_cas_list:
         return True
     return False
+
+#def are_cas_equal(zeek_ca: str, historical_cas: str):
 
 
 def remove_rows(base_df: pd.DataFrame) -> pd.DataFrame:

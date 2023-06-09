@@ -1,4 +1,5 @@
 from ast import Str
+import copy
 from typing import Dict, List
 import pyspark
 from pyspark.sql import SparkSession
@@ -68,21 +69,49 @@ class InterceptDataFinder:
             return date_time_str[space_index+1:]
         return date_time_str[t_index+1:]
     
+    @classmethod
+    def convert_crt_times(self, time_str: str, delimiter: str) -> datetime:
+        delimiter_index = time_str.find(delimiter)
+        date_str = copy.deepcopy(time_str)
+        if delimiter_index != -1:
+            date_str = date_str[:delimiter_index]
+        return datetime.strptime(date_str, "%Y-%m-%d")
+    
     def find_closest_certs(self, cert_dict: Dict) -> List[str]:
         closest_certs = []
         for ca_name in cert_dict.keys():
             certs = cert_dict[ca_name]
             closest = certs[0]
             for cert in certs:
+                cert_not_before = cert["not_before"]
+                cert_not_after = cert["not_after"]
+
+                # Check if cert_not_before or cert_not_after are strings
+                if type(cert_not_before) == str and cert_not_before.find("T") != -1:
+                    cert_not_before = InterceptDataFinder.convert_crt_times(cert["not_before"], "T")
+                elif type(cert_not_before) == str:
+                     cert_not_before = InterceptDataFinder.convert_crt_times(cert["not_before"], " ")
+                
+                if type(cert_not_after) == str and cert_not_after.find("T") != -1:
+                    cert_not_after = InterceptDataFinder.convert_crt_times(cert["not_after"], "T")
+                elif type(cert_not_after) == str:
+                     cert_not_after = InterceptDataFinder.convert_crt_times(cert["not_after"], " ")
+
                 #If overlap
-                if cert["not_before"] < self.data_date and cert["not_after"] > self.data_date:
+                if cert_not_before < self.data_date and cert_not_after > self.data_date:
                     closest = cert
                     break
-                if cert["not_before"] - self.data_date < closest["not_before"] - self.data_date:
+                if (cert_not_before - self.data_date) < (cert_not_after - self.data_date):
                     closest = cert
-            closest_not_before = closest["not_before"].strftime("%Y-%m-%d")
-            latest_not_after = closest["not_after"].strftime("%Y-%m-%d")
-            closest_certs.append(f"{ca_name} ({closest_not_before} - {latest_not_after})")
+            
+            if type(closest["not_before"]) != str and type(closest["not_after"]) != str: 
+                closest_not_before = closest["not_before"].strftime("%Y-%m-%d")
+                closest_not_after = closest["not_after"].strftime("%Y-%m-%d")
+            else:
+                closest_not_before = closest["not_before"]
+                closest_not_after = closest["not_after"]
+            
+            closest_certs.append(f"{ca_name} ({closest_not_before} - {closest_not_after})")
         return closest_certs
     
     @classmethod
@@ -184,6 +213,8 @@ class InterceptDataFinder:
         file_ext_index = source_file.rfind(".")
         src_file_name = source_file[:file_ext_index]
         parquet_file_name = f"{dest_dir}{os.path.basename(src_file_name)}_pos_intercept.parquet"
+        if not os.path.exists(dest_dir):
+            os.mkdir(dest_dir)
         df.to_parquet(parquet_file_name)
         return parquet_file_name
 

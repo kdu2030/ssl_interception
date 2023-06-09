@@ -7,7 +7,6 @@ from tldextract import extract
 from pandas.core.frame import DataFrame
 import sys
 
-
 def search_files(source_dir: str, search_term: str) -> List[str]:
     filepaths = []
     for filename in os.listdir(source_dir):
@@ -32,7 +31,5 @@ def main():
     #/home/ubuntu/data/ssl/{date_str}/
     search_term = sys.argv[2]
     convert_parquets(SQLContext, f"/mnt/data/border/uva/zeek/{date_str}/", f"/mnt/chaseproject/uva/kd5eyn/{search_term}/{date_str}/", search_term=search_term)
-
-
 if __name__ == "__main__":
     main()

@@ -1,27 +1,39 @@
-Beijing Xinchacha Credit Management Co.
+Actalis S.p.A.
+Amazon
 COMODO CA Limited
-Cloudflare
 Corporation Service Company
-DNEncrypt
-E8A18CE694BFE999A2
-Entrust
-GlobalSign nv-sa
-GoDaddy.com
-Google Trust Services LLC
-HydrantID (Avalanche Cloud Corporation)
-McAfee
-RU-Center (D097D090D09E D0A0D0B5D0B3D0B8D0BED0BDD0B0D0BBD18CD0BDD18BD0B9 D0A1D0B5D182D0B5D0B2D0BED0B9 D098D0BDD184D0BED180D0BCD0B0D186D0B8D0BED0BDD0BDD18BD0B9 D0A6D0B5D0BDD182D180)
-The Trustico Group Ltd
-Trust Provider B.V.
-rnational GmbH
-ex LLC
-ZeroSSL
-rovider B.V.
-stico Group Ltd
-The USERTRUST Network
-TrustAsia Technologies
-Trustwave Holdings
 Verein zur Foerderung eines Deutschen Forschungsnetzes e. V.
+Wells Fargo & Company
+logies S.R.L.
+ungsnetzes e. V.
+Trust
+Japan Registry Services Co.
+K Software
+TAIWAN-CA
+McAfee
+Nijimo K.K.
+SECOM Trust Systems CO.
+WoTrus CA Limited
+e. V.
+ZeroSSL
+Company
+V.
+cAfee
+Sectigo Limited
+TeliaSonera
+The USERTRUST Network
+Trust Provider B.V.
+TrustAsia Technologies
+Turing Crypto GmbH
+Turkiye Bilimsel ve Teknolojik Arastirma Kurumu - TUBITAK
+
+Trustwave Holdings
+WISeKey
+SSL Corporation
+SecureCore
+SwissSign AG
+T-Systems International GmbH
+erderung eines Deutschen Forschungsnetzes e. V.
 c Corporation
 TrustCor Systems S. de R.L.
 UniTrust
@@ -63,3 +75,32 @@ QUALCOMM
 Harma
 LG Electronics Inc.
 Becton
+Zhixin New Information
+Samsung Opus group
+Internet2
+Huawei
+Palo-Alto-Networks-Inc.	
+ASK	
+Network Solutions L.L.C.
+Surescripts LLC.
+Cardinal Healt
+SOG
+The Ministry of Digital Development and Communications
+Home Connect GmbH
+DE Web Works
+U.S. Government
+Symantec Corporation
+Let's Encrypt
+Mailtech
+Starfield Technologies
+Project Fi - Session Continuity Tea
+Schneider Electric
+Genious Communications
+CoSoSys Ltd.
+Nintendo of America
+Chunghwa Telecom Co.
+DHIMYOTIS
+TBS INTERNET
+Rede Nacional de Ensino e Pesquisa - RNP
+MI_Uni_Koel
+Soluciones Corporativas IP

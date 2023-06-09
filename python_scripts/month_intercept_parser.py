@@ -8,6 +8,7 @@ import os
 from pyspark.sql import SparkSession
 import threading
 import sys
+import email_sender
 
 def get_parquet_folders(ssl_path: str, x509_path: str, start: datetime, end: datetime) -> List[str]:
     ssl_parquet_folders = os.listdir(ssl_path)
@@ -34,7 +35,10 @@ def intercept_one_day(ssl_dir: str, result_dir: str, api_key: str):
     data_date = datetime.strptime(re.search("\d{4}-\d{2}-\d{2}$", ssl_dir).group(0), "%Y-%m-%d")
     print(data_date)
     for ssl_file in ssl_files:
-        process_parquet(SQLContext, os.path.join(ssl_dir, ssl_file), result_dir, api_key, data_date)
+        try:
+            process_parquet(SQLContext, os.path.join(ssl_dir, ssl_file), result_dir, api_key, data_date)
+        except:
+            continue
 
 def get_api_keys(api_file_path: str) -> List[str]:
     with open(api_file_path, "r") as api_file:
@@ -43,7 +47,7 @@ def get_api_keys(api_file_path: str) -> List[str]:
 def process_all_in_range(start_date_str: str, end_date_str: str, ssl_path: str, x509_path: str, result_dir: str):
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
-    result_path = os.path.join(result_dir, f"{start_date_str}_{end_date_str}")
+    result_path = os.path.join(result_dir, f"{start_date_str}_{end_date_str}") + "/"
 
     # Get Virus Total API Keys
     API_FILE_PATH = "/home/ubuntu/GitLab/ssl_interception/virus_total_api_key"
@@ -68,6 +72,12 @@ def main():
     X509_PATH = os.path.join(BASE_DIR, "x509")
     RESULT_PATH = os.path.join(BASE_DIR, "intercept_data")
     process_all_in_range(sys.argv[1], sys.argv[2], SSL_PATH, X509_PATH, RESULT_PATH)
+    #process_all_in_range("2022-11-01", "2022-11-30", SSL_PATH, X509_PATH, RESULT_PATH)
+
+    EMAIL_KEY_FILE = "/home/ubuntu/GitLab/ssl_interception/keys/brevo_key.txt"
+    sender = email_sender.EmailSender(EMAIL_KEY_FILE)
+    subject = f"Finished Finding Interceptors for Logs Between {sys.argv[1]} and {sys.argv[2]}"
+    sender.send_email_to_self(subject, subject)
 
 if __name__ == "__main__":
     main()

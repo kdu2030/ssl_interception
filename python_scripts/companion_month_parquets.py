@@ -6,7 +6,7 @@ from pyspark.sql import SparkSession
 from convert_parquets import convert_parquets
 import threading
 import sys
-
+import email_sender
 
 class CompanionMonthParquetConverter:
 
@@ -66,7 +66,12 @@ def main():
     companion_month_parser = CompanionMonthParquetConverter(
         result_dir=RESULT_DIR, data_dir=DATA_DIR, month=sys.argv[1], year=sys.argv[2], log_type=sys.argv[3], complement_log_type=sys.argv[4])
     companion_month_parser.convert_all_days()
-
+    
+    EMAIL_KEY_FILE = "/home/ubuntu/GitLab/ssl_interception/keys/brevo_key.txt"
+    sender = email_sender.EmailSender(EMAIL_KEY_FILE)
+    subject = f"{sys.argv[3]} Logs Finished Converting"
+    message = f"The {sys.argv[3]} Logs for {sys.argv[1]}/{sys.argv[2]} have finished converting"
+    sender.send_email_to_self(subject, message)
 
 if __name__ == "__main__":
     main()
